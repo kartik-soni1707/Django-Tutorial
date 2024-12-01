@@ -24,7 +24,7 @@ class Customer(models.Model):
         (MEMBERSHIP_SILVER,'Silver'),
         (MEMBERSHIP_GOLD,'Gold')
     ] 
-    first_name=models.CharField(max_length=120)
+    given_name=models.CharField(max_length=120)
     last_name=models.CharField(max_length=120)
     email=models.EmailField(unique=True)
     phone=models.CharField(max_length=120)
