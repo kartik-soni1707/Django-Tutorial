@@ -64,5 +64,4 @@ class Promotion(models.Model):
     description=models.CharField(max_length=120)
     discount=models.DecimalField(decimal_places=2,max_digits=3)
 
-class Lulaby(models.Model):
-    description=models.CharField(max_length=120)
+
