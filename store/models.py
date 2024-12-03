@@ -65,3 +65,5 @@ class Promotion(models.Model):
     discount=models.DecimalField(decimal_places=2,max_digits=3)
 
 
+class Hadipa(models.Model):
+    aiyoo=models.CharField(max_length=100)
