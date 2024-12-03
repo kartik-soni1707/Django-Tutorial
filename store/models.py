@@ -9,7 +9,7 @@ class Product(models.Model):
     title=models.CharField(max_length=120)
     slug=models.SlugField()
     description=models.TextField()
-    unit_price=models.DecimalField(decimal_places=2,max_digits=1000)
+    unit_price=models.DecimalField(decimal_places=2,max_digits=10)
     inventory=models.IntegerField()
     last_update=models.DateTimeField(auto_now=True)
     collection = models.ForeignKey(Collection, on_delete=models.PROTECT)
@@ -50,7 +50,7 @@ class OrderItem(models.Model):
     order=models.ForeignKey(Order, on_delete=models.PROTECT)
     product=models.ForeignKey(Product, on_delete=models.PROTECT)
     quantity=models.PositiveSmallIntegerField()
-    unit_price=models.DecimalField(decimal_places=2,max_digits=1000)
+    unit_price=models.DecimalField(decimal_places=2,max_digits=6)
 
 class Cart(models.Model):
     created_at=models.DateTimeField(auto_now_add=True)
@@ -62,4 +62,7 @@ class CartItem(models.Model):
 
 class Promotion(models.Model):
     description=models.CharField(max_length=120)
-    discount=models.DecimalField(decimal_places=2,max_digits=2)
+    discount=models.DecimalField(decimal_places=2,max_digits=3)
+
+class Lulaby(models.Model):
+    description=models.CharField(max_length=120)
