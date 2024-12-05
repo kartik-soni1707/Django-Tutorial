@@ -3,3 +3,8 @@
 {% else %}
 <h1>Blah</h1>
 {%endif%}
+<ul>
+    {% for product in result %}
+    <li>{{product.first_name}}</li>
+    {% endfor%}
+</ul>
