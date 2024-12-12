@@ -11,5 +11,5 @@ def say_hello(request):
     cart1.update(created_at=datetime.now())
     cart1.delete()
     
-    return render(request,'hello.html', {'name': 'Jacob',  'stats':result})
+    return render(request,'hello.html', {'name': 'Jacob'})
     
