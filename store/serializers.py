@@ -4,7 +4,10 @@ from decimal import Decimal
 class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
         model=Collection
-        fields=['id','title',]
+        fields=['id','title','products_count']
+    products_count=serializers.SerializerMethodField(method_name='calucalte')
+    def calucalte(self, collection:Collection):
+        return collection.products.count()
 class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model=Product
