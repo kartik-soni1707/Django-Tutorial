@@ -11,4 +11,4 @@ class ProductSerializer(serializers.ModelSerializer):
         fields=['id','title','unit_price','collection','price_with_tax', 'slug','inventory','description']
     price_with_tax=serializers.SerializerMethodField(method_name='calucalte')
     def calucalte(self, product:Product):
-        return product.unit_price* Decimal(1.4)
+        return product.unit_price* Decimal(1.41)
