@@ -21,17 +21,17 @@ class ProductList(APIView):
 
 
 class ProductDetails(APIView):
-    def get(self,request):
+    def get(self,request,id):
         product=get_object_or_404(Product, pk=id)
         serializer=ProductSerializer(product)
         return Response(serializer.data)
-    def put(self,request):
+    def put(self,request,id):
         product=get_object_or_404(Product, pk=id)
         serializer=ProductSerializer(product,data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
-    def delete(self,request):
+    def delete(self,request,id):
         product=get_object_or_404(Product, pk=id)
         if product.orderitems.count()>0:
             return Response({'error':'Product cant be deleted since it has an orderitem'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
@@ -50,17 +50,17 @@ class CollectionList(APIView):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
 class CollectionDetails(APIView):
-    def get(self,request):
+    def get(self,request,id):
         collection=get_object_or_404(Collection, pk=id)
         serializer=CollectionSerializer(collection)
         return Response(serializer.data)
-    def put(self,request):
+    def put(self,request,id):
         collection=get_object_or_404(Collection, pk=id)
         serializer=CollectionSerializer(collection,data=request.data)
         serializer.is_valid(raise_exception=True)
         serializer.save()
         return Response(serializer.data)
-    def delete(self,request):
+    def delete(self,request,id):
         collection=get_object_or_404(Collection, pk=id)
         if collection.products.count()>0:
             return Response({'error':'Collection cant be deleted since it has an product'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
