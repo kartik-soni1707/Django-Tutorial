@@ -15,6 +15,12 @@ class ProductDetails(RetrieveUpdateDestroyAPIView):
     queryset= Product.objects.select_related('collection').all()
     serializer_class= ProductSerializer
     lookup_field= 'id'
+    def delete(self,request,id):
+        product=get_object_or_404(Product, pk=id)
+        if product.orderitems.count()>0:
+            return Response({'error':'Product cant be deleted since it has an orderitem'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        product.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
 
 class CollectionList(ListCreateAPIView):
@@ -25,4 +31,10 @@ class CollectionDetails(RetrieveUpdateDestroyAPIView):
     queryset= Collection.objects.all()
     serializer_class= CollectionSerializer
     lookup_field= 'id'
+    def delete(self,request,id):
+        collection=get_object_or_404(Collection, pk=id)
+        if collection.products.count()>0:
+            return Response({'error':'Product cant be deleted since it has an orderitem'},status=status.HTTP_405_METHOD_NOT_ALLOWED)
+        collection.delete()
+        return Response(status=status.HTTP_204_NO_CONTENT)
     
