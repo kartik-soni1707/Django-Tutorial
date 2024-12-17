@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Product, Collection
+from .models import Product, Collection, Review
 from decimal import Decimal
 class CollectionSerializer(serializers.ModelSerializer):
     class Meta:
@@ -15,3 +15,8 @@ class ProductSerializer(serializers.ModelSerializer):
     price_with_tax=serializers.SerializerMethodField(method_name='calucalte')
     def calucalte(self, product:Product):
         return product.unit_price* Decimal(1.41)
+
+class ReviewSerializer(serializers.ModelSerializer):
+    class Meta:
+        model= Review
+        fields=['id','']
